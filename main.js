@@ -82,7 +82,12 @@
             // 画像対応
             var img = a.querySelector('img');
             if (img !== null) {
-                linkMarkdown = `[![Image](${img.src})](${aHref})`;
+                // アイコンはesaのアイコン記法に変換する
+                if (img.className == 'icon') {
+                    linkMarkdown = `:@${img.title}:`;
+                } else {
+                    linkMarkdown = `[![Image](${img.src})](${aHref})`;
+                }
             }
             a.innerText = linkMarkdown;
         }
