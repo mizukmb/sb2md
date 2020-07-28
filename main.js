@@ -97,7 +97,8 @@
 
     var lines = document.querySelector('.lines');
     var pageTitle = lines.querySelector('.line-title .text').innerText;
-    var indentUnitWidthEm = 1.5
+    var indentUnitWidthEm = 1.5;
+    var isCodeBlock = false;
 
     lines = lines.querySelectorAll('.line');
     pageTexts = [];
@@ -125,6 +126,18 @@
 
         text = headline(text);
         text = links(text);
+
+        if(line.querySelector('code')) {
+            if(line.querySelector('code').className == 'code-start') {
+                isCodeBlock = true;
+                text = "\n```" + text;
+            }
+            pageTexts.push(text);
+            continue;
+        } else if(isCodeBlock == true) {
+            isCodeBlock = false;
+            pageTexts.push("```\n\n");
+        }
 
         // 箇条書き対応
         var liDot = line.querySelector('.indent-mark');
