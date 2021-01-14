@@ -82,7 +82,7 @@
             // 画像対応
             var img = a.querySelector('img');
             if (img !== null) {
-                if(img.className == 'icon' && img.title == 'hr') {
+                if (img.className == 'icon' && img.title == 'hr') {
                     linkMarkdown = '---';
                 } else if (img.className == 'icon') {
                     // アイコンはesaのアイコン記法に変換する
