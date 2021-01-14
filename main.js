@@ -82,8 +82,10 @@
             // 画像対応
             var img = a.querySelector('img');
             if (img !== null) {
-                // アイコンはesaのアイコン記法に変換する
-                if (img.className == 'icon') {
+                if(img.className == 'icon' && img.title == 'hr') {
+                    linkMarkdown = '---';
+                } else if (img.className == 'icon') {
+                    // アイコンはesaのアイコン記法に変換する
                     linkMarkdown = `:@${img.title}:`;
                 } else {
                     linkMarkdown = `[![Image](${img.src})](${aHref})`;
@@ -147,7 +149,7 @@
             var indentLevel = width / indentUnitWidthEm;
             text = markdownIndent(indentLevel) + '- ' + text;
         }
-        if (liDot === null && text.length > 0 && text[0] !== '#') {
+        if (liDot === null && text.length > 0 && text[0] !== '#' && text !== '---') {
             text += '<br>'
         }
 
